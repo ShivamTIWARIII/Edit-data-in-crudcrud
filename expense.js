@@ -14,7 +14,7 @@ form.addEventListener('submit', (event) => {
         category,
     };
 
-    axios.post("https://crudcrud.com/api/c3ed28d0d6fb4a8281a15f8571cca0a6/expense", newExpense)
+    axios.post("https://crudcrud.com/api/af9e836238474d60be32a26ad77ab922/expense", newExpense)
         .then(() => {
             event.target.reset();
             displayData();
@@ -25,8 +25,20 @@ form.addEventListener('submit', (event) => {
 });
 
 
+function removeData(id) {
+    axios.delete(`https://crudcrud.com/api/af9e836238474d60be32a26ad77ab922/expense/${id}`)
+        .then(() => {
+            displayData(); 
+        })
+        .catch((error) => {
+            console.error('Error deleting expense:', error);
+        });
+}
+
+
+// In your displayData function
 function displayData() {
-    axios.get("https://crudcrud.com/api/c3ed28d0d6fb4a8281a15f8571cca0a6/expense")
+    axios.get("https://crudcrud.com/api/af9e836238474d60be32a26ad77ab922/expense")
         .then((response) => {
             const userData = response.data;
             var finalData = '';
@@ -43,6 +55,8 @@ function displayData() {
             console.error('Error fetching expenses:', error);
         });
 }
+
+
 
 
 
